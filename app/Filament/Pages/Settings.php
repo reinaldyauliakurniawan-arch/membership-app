@@ -53,8 +53,8 @@ class Settings extends Page implements HasForms
         $this->data = $settings;
         $general = is_array($this->data['general'] ?? null) ? $this->data['general'] : [];
 
-        // Ensure gym_logo is always set correctly
-        foreach (['gym_logo'] as $logoType) {
+        // Ensure club_logo is always set correctly
+        foreach (['club_logo'] as $logoType) {
             if (! empty($general[$logoType]) && is_array($general[$logoType])) {
                 $general[$logoType] = $general[$logoType];
             }
@@ -108,14 +108,14 @@ class Settings extends Page implements HasForms
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextInput::make('general.gym_name')
-                                    ->label(__('app.settings.fields.gym_name')),
+                                TextInput::make('general.club_name')
+                                    ->label(__('app.settings.fields.club_name')),
                                 Select::make('general.currency')
                                     ->label(__('app.settings.fields.currency'))
                                     ->options(Helpers::getCurrencies())
                                     ->searchable(),
-                                FileUpload::make('general.gym_logo')
-                                    ->label(__('app.settings.fields.gym_logo'))
+                                FileUpload::make('general.club_logo')
+                                    ->label(__('app.settings.fields.club_logo'))
                                     ->disk('public')
                                     ->directory('images')
                                     ->preserveFilenames()
@@ -123,7 +123,7 @@ class Settings extends Page implements HasForms
                                     ->deletable()
                                     ->visibility('public')
                                     ->image()
-                                    ->afterStateUpdated(fn ($state, callable $set) => $this->handleFileUpload($state, 'gym_logo', $set))
+                                    ->afterStateUpdated(fn ($state, callable $set) => $this->handleFileUpload($state, 'club_logo', $set))
                                     ->columnSpanFull(),
                                 DatePicker::make('general.financial_year_start')
                                     ->native(false)
@@ -180,11 +180,11 @@ class Settings extends Page implements HasForms
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextInput::make('general.gym_email')
+                                TextInput::make('general.club_email')
                                     ->label(__('app.settings.fields.email_address'))
                                     ->email()
                                     ->prefixIcon('heroicon-o-envelope'),
-                                TextInput::make('general.gym_contact')
+                                TextInput::make('general.club_contact')
                                     ->numeric()
                                     ->prefixIcon('heroicon-o-phone')
                                     ->label(__('app.settings.fields.contact_no')),
@@ -215,8 +215,8 @@ class Settings extends Page implements HasForms
                                 ->native(false)
                                 ->label(__('app.settings.fields.name_type'))
                                 ->options([
-                                    'gym_name' => __('app.settings.options.name_type.gym_name'),
-                                    'gym_logo' => __('app.settings.options.name_type.gym_logo'),
+                                    'club_name' => __('app.settings.options.name_type.club_name'),
+                                    'club_logo' => __('app.settings.options.name_type.club_logo'),
                                 ]),
                         ]),
                     Fieldset::make(__('app.settings.sections.email'))
@@ -366,7 +366,7 @@ class Settings extends Page implements HasForms
                     ->toDateString();
         }
 
-        foreach (['gym_logo'] as $logoKey) {
+        foreach (['club_logo'] as $logoKey) {
             $value = $general[$logoKey] ?? null;
             if (is_array($value)) {
                 $general[$logoKey] = $value[0] ?? null;

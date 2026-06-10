@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $email
  * @property string|null $contact
  * @property string|null $emergency_contact
- * @property string|null $health_issue
+
  * @property string|null $gender
  * @property \Illuminate\Support\Carbon|null $dob
  * @property string|null $address
@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $city
  * @property string|null $pincode
  * @property string|null $source
- * @property string|null $goal
+
  * @property Status|null $status
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Subscription> $subscriptions
  */
@@ -48,7 +48,7 @@ class Member extends Model
         'email',
         'contact',
         'emergency_contact',
-        'health_issue',
+
         'gender',
         'dob',
         'address',
@@ -57,7 +57,7 @@ class Member extends Model
         'city',
         'pincode',
         'source',
-        'goal',
+
         'status',
     ];
 

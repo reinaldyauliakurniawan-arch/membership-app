@@ -16,7 +16,7 @@ class MarkSubscriptionsStatus extends Command
      *
      * @var string
      */
-    protected $signature = 'gymie:subscriptions
+    protected $signature = 'inasa:subscriptions
                             {--mark-expired : Mark expired subscriptions}
                             {--mark-expiring : Mark subscriptions expiring within the configured window}';
 

@@ -16,17 +16,17 @@ it('returns updated settings after put() within the same request', function (): 
     $repo = app(SettingsRepository::class);
 
     $original = $repo->get();
-    expect(data_get($original, 'general.gym_name'))->toBeString();
+    expect(data_get($original, 'general.club_name'))->toBeString();
 
     $repo->put([
         ...$original,
         'general' => [
             ...($original['general'] ?? []),
-            'gym_name' => 'IronPulse Gym',
+            'club_name' => 'INASA Scrabble Academy',
         ],
     ]);
 
     $updated = $repo->get();
 
-    expect(data_get($updated, 'general.gym_name'))->toBe('IronPulse Gym');
+    expect(data_get($updated, 'general.club_name'))->toBe('INASA Scrabble Academy');
 });

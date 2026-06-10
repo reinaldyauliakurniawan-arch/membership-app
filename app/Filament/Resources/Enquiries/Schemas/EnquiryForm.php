@@ -139,12 +139,12 @@ class EnquiryForm
                             ->selectablePlaceholder(false),
                         Select::make('goal')
                             ->options([
-                                'fitness' => __('app.options.goal.fitness'),
-                                'body_building' => __('app.options.goal.body_building'),
-                                'fatloss' => __('app.options.goal.fatloss'),
-                                'weightgain' => __('app.options.goal.weightgain'),
+                                'competitive' => __('app.options.goal.competitive'),
+                                'recreational' => __('app.options.goal.recreational'),
+                                'tournament_prep' => __('app.options.goal.tournament_prep'),
+                                'coaching' => __('app.options.goal.coaching'),
                                 'others' => __('app.options.goal.others'),
-                            ])->default('fitness')
+                            ])->default('recreational')
                             ->label(__('app.fields.goal'))
                             ->selectablePlaceholder(false),
                     ])->columns(3),

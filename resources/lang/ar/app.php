@@ -28,7 +28,7 @@ return [
         'gender' => 'الجنس',
         'dob' => 'تاريخ الميلاد',
         'emergency_contact' => 'رقم الطوارئ',
-        'health_issues' => 'مشاكل صحية',
+
         'member' => 'العضو',
         'plan' => 'الخطة',
         'start_date' => 'تاريخ البداية',
@@ -66,7 +66,7 @@ return [
         'outcome' => 'النتيجة',
         'interested_in' => 'مهتم ب',
         'source' => 'المصدر',
-        'goal' => 'الهدف',
+
         'preferred_start_date' => 'تاريخ البدء المفضل',
         'follow_up_method' => 'طريقة المتابعة',
         'expense' => 'المصروف',
@@ -113,7 +113,7 @@ return [
         'member_code' => 'رمز للعضو',
         'date_example' => '01-01-2001',
         'date_time_example' => '01-01-2001 12:00',
-        'health_issues' => 'هل توجد مشاكل صحية؟',
+
         'vendor_name' => 'اسم المورد',
         'expense_name_example' => 'مثال: فاتورة الكهرباء',
         'discount_note_example' => 'مثال: عرض ترحيبي',
@@ -268,11 +268,11 @@ return [
             'others' => 'اخرى',
         ],
         'goal' => [
-            'fitness' => 'لياقة',
-            'body_building' => 'بناء عضلات',
-            'fatloss' => 'خسارة دهون',
-            'weightgain' => 'زيادة وزن',
-            'others' => 'اخرى',
+            'competitive'     => 'Competitive Play',
+            'recreational'    => 'Recreational / Casual',
+            'tournament_prep' => 'Tournament Preparation',
+            'coaching'        => 'Personal Coaching',
+            'others'          => 'اخرى',
         ],
         'follow_up_method' => [
             'call' => 'اتصال',
@@ -371,8 +371,8 @@ return [
             'press_enter_to_add' => 'اضغط Enter للاضافة',
             'type_discount' => 'اكتب نسبة الخصم %',
             'type_category' => 'اكتب اسم الفئة',
-            'tokens_invoice' => 'الرموز: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}',
-            'tokens_receipt' => 'الرموز: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}, {payment_amount}',
+            'tokens_invoice' => 'الرموز: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}',
+            'tokens_receipt' => 'الرموز: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}, {payment_amount}',
         ],
         'placeholders' => [
             'prefix' => 'GY',

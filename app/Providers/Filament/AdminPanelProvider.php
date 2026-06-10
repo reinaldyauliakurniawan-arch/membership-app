@@ -62,7 +62,7 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->passwordReset()
-            ->brandName('Gymie')
+            ->brandName('INASA')
             ->unsavedChangesAlerts()
             ->colors($this->colors())
             ->darkMode(false)

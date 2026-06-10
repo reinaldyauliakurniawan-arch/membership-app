@@ -1,13 +1,13 @@
 {
     "general": {
         "locale": "",
-        "gym_logo": [],
+        "club_logo": [],
         "currency": "",
-        "gym_name": "",
+        "club_name": "",
         "financial_year_start": "",
         "financial_year_end": "",
-        "gym_email": "",
-        "gym_contact": "",
+        "club_email": "",
+        "club_contact": "",
         "address": "",
         "country": "",
         "state": "",

@@ -22,9 +22,9 @@ it('reads and updates settings via the API', function (): void {
 
     $response = $this->putJson('/api/v1/settings', [
         'general' => [
-            'gym_name' => 'Demo Gym',
+            'club_name' => 'Demo club',
         ],
     ])->assertSuccessful();
 
-    expect((string) $response->json('data.general.gym_name'))->toBe('Demo Gym');
+    expect((string) $response->json('data.general.club_name'))->toBe('Demo club');
 });

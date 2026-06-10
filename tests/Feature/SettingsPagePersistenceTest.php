@@ -41,7 +41,7 @@ it('persists settings via the settings repository when saving', function (): voi
             'general' => [
                 'financial_year_start' => '2026-04-01',
                 'financial_year_end' => '2027-03-31',
-                'gym_logo' => ['images/logo.png'],
+                'club_logo' => ['images/logo.png'],
             ],
             'invoice' => [],
             'member' => [],
@@ -59,6 +59,5 @@ it('persists settings via the settings repository when saving', function (): voi
         ->toHaveKey('general')
         ->and($repository->lastPut['general']['financial_year_start'])->toBe('2026-04-01')
         ->and($repository->lastPut['general']['financial_year_end'])->toBe('2027-03-31')
-        ->and($repository->lastPut['general']['gym_logo'])->toBe('images/logo.png');
+        ->and($repository->lastPut['general']['club_logo'])->toBe('images/logo.png');
 });
-

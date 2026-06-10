@@ -105,10 +105,7 @@ class MemberForm
                                     ->required()
                                     ->label(__('app.fields.dob'))
                                     ->placeholder(__('app.placeholders.date_example')),
-                                TextInput::make('health_issue')
-                                    ->label(__('app.fields.health_issues'))
-                                    ->maxLength(500)
-                                    ->placeholder(__('app.placeholders.health_issues')),
+
                                 Select::make('source')
                                     ->options([
                                         'promotions' => __('app.options.source.promotions'),
@@ -117,16 +114,7 @@ class MemberForm
                                     ])->default('promotions')
                                     ->label(__('app.fields.source'))
                                     ->selectablePlaceholder(false),
-                                Select::make('goal')
-                                    ->options([
-                                        'fitness' => __('app.options.goal.fitness'),
-                                        'body_building' => __('app.options.goal.body_building'),
-                                        'fatloss' => __('app.options.goal.fatloss'),
-                                        'weightgain' => __('app.options.goal.weightgain'),
-                                        'others' => __('app.options.goal.others'),
-                                    ])->default('fitness')
-                                    ->label(__('app.fields.goal'))
-                                    ->selectablePlaceholder(false),
+
                             ])->columns(3)->columnSpan(3),
                     ])->columns(4),
                 Section::make(__('app.ui.location'))

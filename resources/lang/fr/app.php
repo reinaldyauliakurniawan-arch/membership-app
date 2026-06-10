@@ -28,7 +28,7 @@ return [
         'gender' => 'Genre',
         'dob' => 'Date de naissance',
         'emergency_contact' => 'Contact d\'urgence',
-        'health_issues' => 'Problèmes de santé',
+
         'member' => 'Membre',
         'plan' => 'Forfait',
         'start_date' => 'Date de début',
@@ -66,7 +66,7 @@ return [
         'outcome' => 'Résultat',
         'interested_in' => 'Intéressé par',
         'source' => 'Source',
-        'goal' => 'Objectif',
+
         'preferred_start_date' => 'Date de début souhaitée',
         'follow_up_method' => 'Méthode de relance',
         'expense' => 'Dépense',
@@ -113,7 +113,7 @@ return [
         'member_code' => 'Code du membre',
         'date_example' => '01-01-2001',
         'date_time_example' => '01-01-2001 12:00',
-        'health_issues' => 'Des problèmes de santé ?',
+
         'vendor_name' => 'Nom du fournisseur',
         'expense_name_example' => 'ex. facture d\'électricité',
         'discount_note_example' => 'ex. offre de bienvenue',
@@ -268,11 +268,11 @@ return [
             'others' => 'Autres',
         ],
         'goal' => [
-            'fitness' => 'Fitness',
-            'body_building' => 'Musculation',
-            'fatloss' => 'Perte de graisse',
-            'weightgain' => 'Prise de poids',
-            'others' => 'Autres',
+            'competitive'     => 'Competitive Play',
+            'recreational'    => 'Recreational / Casual',
+            'tournament_prep' => 'Tournament Preparation',
+            'coaching'        => 'Personal Coaching',
+            'others'          => 'Autres',
         ],
         'follow_up_method' => [
             'call' => 'Appel',
@@ -321,7 +321,7 @@ return [
             'save_settings' => 'Enregistrer les paramètres',
         ],
         'tabs' => [
-            'gym_info' => 'Salle',
+            'gym_info' => 'Club Info',
             'invoice' => 'Facture',
             'member' => 'Membre',
             'charges' => 'Frais',
@@ -335,9 +335,9 @@ return [
             'email' => 'Email',
         ],
         'fields' => [
-            'gym_name' => 'Nom de la salle',
+            'gym_name' => 'Nom de club',
             'currency' => 'Devise',
-            'gym_logo' => 'Logo',
+            'gym_logo' => 'Logo du Club',
             'financial_year_start' => 'Début de l\'année fiscale',
             'financial_year_end' => 'Fin de l\'année fiscale',
             'address' => 'Adresse',
@@ -363,16 +363,16 @@ return [
         ],
         'options' => [
             'name_type' => [
-                'gym_name' => 'Nom de la salle',
-                'gym_logo' => 'Logo',
+                'gym_name' => 'Nom du club',
+                'gym_logo' => 'Logo du club',
             ],
         ],
         'hints' => [
             'press_enter_to_add' => 'Appuyez sur Entrée pour ajouter',
             'type_discount' => 'Saisir la remise %',
             'type_category' => 'Saisir le nom de catégorie',
-            'tokens_invoice' => 'Jetons: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}',
-            'tokens_receipt' => 'Jetons: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}, {payment_amount}',
+            'tokens_invoice' => 'Jetons: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}',
+            'tokens_receipt' => 'Jetons: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}, {payment_amount}',
         ],
         'placeholders' => [
             'prefix' => 'GY',

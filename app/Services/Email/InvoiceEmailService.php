@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
  * This service is responsible for:
  * - building invoice/payment email payloads
  * - rendering PDF attachments
- * - configuring Reply-To from gym settings
+ * - configuring Reply-To from club settings
  * - rendering safe, token-based subject templates
  */
 final class InvoiceEmailService
@@ -80,8 +80,8 @@ final class InvoiceEmailService
         $settings = $this->settingsRepository->get();
 
         $this->withLocaleFromSettings($settings, function () use ($settings, $invoice, $toEmail, $note, $memberName): void {
-            $gym = $this->gymIdentityFromSettings($settings);
-            $gymName = $gym['name'] !== '' ? $gym['name'] : 'Gymie';
+            $club = $this->clubIdentityFromSettings($settings);
+            $clubName = $club['name'] !== '' ? $club['name'] : 'INASA';
             $subjectTemplate = Data::string(data_get($settings,
                 'notifications.email.invoice_subject_template',
                 'Invoice {invoice_number} - {status}',
@@ -90,22 +90,22 @@ final class InvoiceEmailService
             $pdfBytes = $this->renderer->render($invoice);
             $subject = $this->renderSubjectTemplate(
                 $subjectTemplate,
-                $this->invoiceSubjectTokens($invoice, $gymName, $memberName),
+                $this->invoiceSubjectTokens($invoice, $clubName, $memberName),
             );
 
             $mailable = new InvoiceIssuedMail(
                 invoice: $invoice,
                 subjectLine: $subject,
-                gymName: $gymName,
-                gymEmail: $gym['email'],
-                gymContact: $gym['contact'],
+                clubName: $clubName,
+                clubEmail: $club['email'],
+                clubContact: $club['contact'],
                 memberName: $memberName,
                 note: $note,
                 pdfBytes: $pdfBytes,
             );
 
-            if (filled($gym['email'])) {
-                $mailable->replyTo($gym['email'], $gymName);
+            if (filled($club['email'])) {
+                $mailable->replyTo($club['email'], $clubName);
             }
 
             Mail::to($toEmail)->send($mailable);
@@ -137,8 +137,8 @@ final class InvoiceEmailService
         $settings = $this->settingsRepository->get();
 
         $this->withLocaleFromSettings($settings, function () use ($settings, $invoice, $transaction, $toEmail, $note, $memberName): void {
-            $gym = $this->gymIdentityFromSettings($settings);
-            $gymName = $gym['name'] !== '' ? $gym['name'] : 'Gymie';
+            $club = $this->clubIdentityFromSettings($settings);
+            $clubName = $club['name'] !== '' ? $club['name'] : 'INASA';
             $subjectTemplate = Data::string(data_get($settings,
                 'notifications.email.receipt_subject_template',
                 'Payment received - {invoice_number}',
@@ -148,8 +148,8 @@ final class InvoiceEmailService
             $subject = $this->renderSubjectTemplate(
                 $subjectTemplate,
                 [
-                    ...$this->invoiceSubjectTokens($invoice, $gym['name'], $memberName),
-                    ...$this->invoiceSubjectTokens($invoice, $gymName, $memberName),
+                    ...$this->invoiceSubjectTokens($invoice, $club['name'], $memberName),
+                    ...$this->invoiceSubjectTokens($invoice, $clubName, $memberName),
                     'payment_amount' => Helpers::formatCurrency((float) ($transaction->amount ?? 0)),
                 ],
             );
@@ -158,16 +158,16 @@ final class InvoiceEmailService
                 invoice: $invoice,
                 transaction: $transaction,
                 subjectLine: $subject,
-                gymName: $gymName,
-                gymEmail: $gym['email'],
-                gymContact: $gym['contact'],
+                clubName: $clubName,
+                clubEmail: $club['email'],
+                clubContact: $club['contact'],
                 memberName: $memberName,
                 note: $note,
                 pdfBytes: $pdfBytes,
             );
 
-            if (filled($gym['email'])) {
-                $mailable->replyTo($gym['email'], $gymName);
+            if (filled($club['email'])) {
+                $mailable->replyTo($club['email'], $clubName);
             }
 
             Mail::to($toEmail)->send($mailable);
@@ -220,17 +220,17 @@ final class InvoiceEmailService
     }
 
     /**
-     * Derive gym identity fields from settings.
+     * Derive club identity fields from settings.
      *
      * @param  array<string, mixed>  $settings
      * @return array{name: string, email: string, contact: string}
      */
-    private function gymIdentityFromSettings(array $settings): array
+    private function clubIdentityFromSettings(array $settings): array
     {
         return [
-            'name' => Data::string(data_get($settings, 'general.gym_name', AppConfig::string('app.name'))),
-            'email' => Data::string(data_get($settings, 'general.gym_email', '')),
-            'contact' => Data::string(data_get($settings, 'general.gym_contact', '')),
+            'name' => Data::string(data_get($settings, 'general.club_name', AppConfig::string('app.name'))),
+            'email' => Data::string(data_get($settings, 'general.club_email', '')),
+            'contact' => Data::string(data_get($settings, 'general.club_contact', '')),
         ];
     }
 
@@ -239,7 +239,7 @@ final class InvoiceEmailService
      *
      * @return array<string, string>
      */
-    private function invoiceSubjectTokens(Invoice $invoice, string $gymName, string $memberName): array
+    private function invoiceSubjectTokens(Invoice $invoice, string $clubName, string $memberName): array
     {
         return [
             'invoice_number' => Data::string($invoice->number),
@@ -247,7 +247,7 @@ final class InvoiceEmailService
             'total' => Helpers::formatCurrency((float) ($invoice->total_amount ?? 0)),
             'paid' => Helpers::formatCurrency((float) ($invoice->paid_amount ?? 0)),
             'due' => Helpers::formatCurrency((float) ($invoice->due_amount ?? 0)),
-            'gym_name' => $gymName,
+            'club_name' => $clubName,
             'member_name' => $memberName,
         ];
     }

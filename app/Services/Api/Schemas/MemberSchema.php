@@ -56,7 +56,7 @@ final class MemberSchema
             'email' => ['required', 'string', 'email', 'max:255', new ModelUnique(Member::class, 'email')],
             'contact' => ['required', 'string', 'max:20'],
             'emergency_contact' => ['nullable', 'string', 'max:20'],
-            'health_issue' => ['nullable', 'string', 'max:500'],
+
             'gender' => ['nullable', 'string', Rule::in(['male', 'female', 'other'])],
             'dob' => ['nullable', 'date'],
             'address' => ['nullable', 'string'],
@@ -65,7 +65,7 @@ final class MemberSchema
             'city' => ['nullable', 'string', 'max:255'],
             'pincode' => ['nullable', 'string', 'max:20'],
             'source' => ['nullable', 'string', 'max:255'],
-            'goal' => ['nullable', 'string', 'max:255'],
+
             'status' => ['nullable', 'string', Rule::in(['active', 'inactive'])],
         ];
     }
@@ -82,7 +82,7 @@ final class MemberSchema
             'email' => ['sometimes', 'string', 'email', 'max:255', new ModelUnique(Member::class, 'email', $memberId)],
             'contact' => ['sometimes', 'string', 'max:20'],
             'emergency_contact' => ['sometimes', 'nullable', 'string', 'max:20'],
-            'health_issue' => ['sometimes', 'nullable', 'string', 'max:500'],
+
             'gender' => ['sometimes', 'nullable', 'string', Rule::in(['male', 'female', 'other'])],
             'dob' => ['sometimes', 'nullable', 'date'],
             'address' => ['sometimes', 'nullable', 'string'],
@@ -91,7 +91,7 @@ final class MemberSchema
             'city' => ['sometimes', 'nullable', 'string', 'max:255'],
             'pincode' => ['sometimes', 'nullable', 'string', 'max:20'],
             'source' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'goal' => ['sometimes', 'nullable', 'string', 'max:255'],
+
             'status' => ['sometimes', 'nullable', 'string', Rule::in(['active', 'inactive'])],
         ];
     }
@@ -108,7 +108,7 @@ final class MemberSchema
             'email' => (string) $member->email,
             'contact' => $member->contact ? (string) $member->contact : null,
             'emergency_contact' => $member->emergency_contact ? (string) $member->emergency_contact : null,
-            'health_issue' => $member->health_issue ? (string) $member->health_issue : null,
+
             'gender' => $member->gender ? (string) $member->gender : null,
             'dob' => $member->dob?->toDateString(),
             'photo' => $member->photo ? (string) $member->photo : null,
@@ -119,7 +119,7 @@ final class MemberSchema
             'city' => $member->city ? (string) $member->city : null,
             'pincode' => $member->pincode ? (string) $member->pincode : null,
             'source' => $member->source ? (string) $member->source : null,
-            'goal' => $member->goal ? (string) $member->goal : null,
+
             'status' => Status::valueOf($member->status),
             'created_at' => $member->created_at?->toISOString(),
             'updated_at' => $member->updated_at?->toISOString(),

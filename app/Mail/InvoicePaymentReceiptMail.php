@@ -22,15 +22,15 @@ class InvoicePaymentReceiptMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * @param  non-empty-string  $gymName
+     * @param  non-empty-string  $clubName
      */
     public function __construct(
         public readonly Invoice $invoice,
         public readonly InvoiceTransaction $transaction,
         public readonly string $subjectLine,
-        public readonly string $gymName,
-        public readonly string $gymEmail,
-        public readonly string $gymContact,
+        public readonly string $clubName,
+        public readonly string $clubEmail,
+        public readonly string $clubContact,
         public readonly string $memberName,
         public readonly ?string $note,
         public readonly string $pdfBytes,
@@ -56,9 +56,9 @@ class InvoicePaymentReceiptMail extends Mailable
             with: [
                 'invoice' => $this->invoice,
                 'transaction' => $this->transaction,
-                'gymName' => $this->gymName,
-                'gymEmail' => $this->gymEmail,
-                'gymContact' => $this->gymContact,
+                'clubName' => $this->clubName,
+                'clubEmail' => $this->clubEmail,
+                'clubContact' => $this->clubContact,
                 'memberName' => $this->memberName,
                 'note' => $this->note,
             ],

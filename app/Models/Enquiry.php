@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $pincode
  * @property array<int, mixed>|null $interested_in
  * @property string|null $source
- * @property string|null $goal
+
  * @property \Illuminate\Support\Carbon|null $start_by
  * @property-read User|null $user
  * @property-read \Illuminate\Database\Eloquent\Collection<int, FollowUp> $followUps
@@ -58,7 +58,7 @@ class Enquiry extends Model
         'pincode',
         'interested_in',
         'source',
-        'goal',
+
         'start_by',
     ];
 

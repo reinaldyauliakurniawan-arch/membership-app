@@ -136,7 +136,7 @@ final class InvoiceDocument
      */
     private static function logoDataUriFromSettings(array $settings): ?string
     {
-        $raw = data_get($settings, 'general.gym_logo');
+        $raw = data_get($settings, 'general.club_logo');
 
         $path = null;
         if (is_string($raw) && filled($raw)) {

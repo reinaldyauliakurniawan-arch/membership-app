@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('contact')->nullable();
             $table->string('emergency_contact')->nullable();
-            $table->string('health_issue')->nullable();
+
             $table->enum('gender', ['male', 'female', 'other'])->default('other')->nullable();
             $table->date('dob')->nullable();
             $table->text('address')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->text('pincode')->nullable();
             $table->string('source')->default('promotions')->nullable();
-            $table->string('goal')->default('fitness')->nullable();
+
             $table->enum('status', ['active', 'inactive'])->default('active')->nullable();
             $table->softDeletes();
             $table->timestamps();

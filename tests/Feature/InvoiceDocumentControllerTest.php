@@ -23,7 +23,7 @@ function makeInvoiceWithViewer(): array
 {
     Helpers::setTestSettingsOverride([
         'general' => [
-            'gym_name' => 'Demo Gym',
+            'club_name' => 'Demo club',
             'currency' => 'INR',
         ],
         'charges' => [

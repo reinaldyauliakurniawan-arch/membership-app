@@ -28,7 +28,7 @@ return [
         'gender' => 'Gender',
         'dob' => 'Date of Birth',
         'emergency_contact' => 'Emergency Contact',
-        'health_issues' => 'Health Issues',
+
         'member' => 'Member',
         'plan' => 'Plan',
         'start_date' => 'Start Date',
@@ -66,7 +66,7 @@ return [
         'outcome' => 'Outcome',
         'interested_in' => 'Interested In',
         'source' => 'Source',
-        'goal' => 'Goal',
+
         'preferred_start_date' => 'Preferred Start Date',
         'follow_up_method' => 'Follow-up method',
         'expense' => 'Expense',
@@ -113,7 +113,7 @@ return [
         'member_code' => 'Code for the member',
         'date_example' => '01-01-2001',
         'date_time_example' => '01-01-2001 12:00',
-        'health_issues' => 'Any health issues?',
+
         'vendor_name' => 'Vendor name',
         'expense_name_example' => 'e.g. Electricity bill',
         'discount_note_example' => 'e.g. introductory offer',
@@ -268,11 +268,11 @@ return [
             'others' => 'Others',
         ],
         'goal' => [
-            'fitness' => 'Fitness',
-            'body_building' => 'Body Building',
-            'fatloss' => 'Fatloss',
-            'weightgain' => 'Weightgain',
-            'others' => 'Others',
+            'competitive'     => 'Competitive Play',
+            'recreational'    => 'Recreational / Casual',
+            'tournament_prep' => 'Tournament Preparation',
+            'coaching'        => 'Personal Coaching',
+            'others'          => 'Others',
         ],
         'follow_up_method' => [
             'call' => 'Call',
@@ -321,7 +321,7 @@ return [
             'save_settings' => 'Save settings',
         ],
         'tabs' => [
-            'gym_info' => 'Gym Info',
+            'gym_info' => 'Club Info',
             'invoice' => 'Invoice',
             'member' => 'Member',
             'charges' => 'Charges',
@@ -335,9 +335,9 @@ return [
             'email' => 'Email',
         ],
         'fields' => [
-            'gym_name' => 'Gym Name',
+            'gym_name' => 'Club Name',
             'currency' => 'Currency',
-            'gym_logo' => 'Gym Logo',
+            'gym_logo' => 'Club Logo',
             'financial_year_start' => 'Financial year start',
             'financial_year_end' => 'Financial year end',
             'address' => 'Address',
@@ -363,16 +363,16 @@ return [
         ],
         'options' => [
             'name_type' => [
-                'gym_name' => 'Gym Name',
-                'gym_logo' => 'Gym Logo',
+                'gym_name' => 'Club Name',
+                'gym_logo' => 'Club Logo',
             ],
         ],
         'hints' => [
             'press_enter_to_add' => 'Press Enter to add',
             'type_discount' => 'Type discount %',
             'type_category' => 'Type category name',
-            'tokens_invoice' => 'Tokens: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}',
-            'tokens_receipt' => 'Tokens: {invoice_number}, {status}, {total}, {paid}, {due}, {gym_name}, {member_name}, {payment_amount}',
+            'tokens_invoice' => 'Tokens: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}',
+            'tokens_receipt' => 'Tokens: {invoice_number}, {status}, {total}, {paid}, {due}, {club_name}, {member_name}, {payment_amount}',
         ],
         'placeholders' => [
             'prefix' => 'GY',

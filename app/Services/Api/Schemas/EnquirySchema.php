@@ -65,7 +65,7 @@ final class EnquirySchema
             'interested_in' => ['nullable', 'array'],
             'interested_in.*' => ['string'],
             'source' => ['nullable', 'string', 'max:255'],
-            'goal' => ['nullable', 'string', 'max:255'],
+
             'start_by' => ['nullable', 'date'],
             'follow_up' => ['sometimes', 'array'],
             'follow_up.method' => ['required_with:follow_up', 'string', 'max:50'],
@@ -95,7 +95,7 @@ final class EnquirySchema
             'interested_in' => ['sometimes', 'nullable', 'array'],
             'interested_in.*' => ['string'],
             'source' => ['sometimes', 'nullable', 'string', 'max:255'],
-            'goal' => ['sometimes', 'nullable', 'string', 'max:255'],
+
             'start_by' => ['sometimes', 'nullable', 'date'],
         ];
     }
@@ -122,7 +122,7 @@ final class EnquirySchema
             'pincode' => $enquiry->pincode ? (string) $enquiry->pincode : null,
             'interested_in' => is_array($enquiry->interested_in) ? $enquiry->interested_in : [],
             'source' => $enquiry->source ? (string) $enquiry->source : null,
-            'goal' => $enquiry->goal ? (string) $enquiry->goal : null,
+
             'start_by' => $enquiry->start_by?->toDateString(),
             'created_at' => $enquiry->created_at?->toISOString(),
             'updated_at' => $enquiry->updated_at?->toISOString(),

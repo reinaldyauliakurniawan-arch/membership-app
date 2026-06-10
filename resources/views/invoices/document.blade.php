@@ -292,11 +292,11 @@
 
 <body>
     @php
-    $gymName = (string) data_get($settings, 'general.gym_name', 'Gymie');
-    $gymAddress = (string) data_get($settings, 'general.address', '');
-    $gymEmail = (string) data_get($settings, 'general.gym_email', '');
-    $gymContact = (string) data_get($settings, 'general.gym_contact', '');
-    $nameType = (string) data_get($settings, 'invoice.name_type', 'gym_name');
+    $clubName = (string) data_get($settings, 'general.club_name', 'INASA');
+    $clubAddress = (string) data_get($settings, 'general.address', '');
+    $clubEmail = (string) data_get($settings, 'general.club_email', '');
+    $clubContact = (string) data_get($settings, 'general.club_contact', '');
+    $nameType = (string) data_get($settings, 'invoice.name_type', 'club_name');
 
     $status = $invoice->status?->value ?? (string) $invoice->status;
     $statusLabel = $invoice->getDisplayStatusLabel();
@@ -313,8 +313,8 @@
     $taxRatePercent = $taxRatePercent > 0 ? round($taxRatePercent, 2) : 0;
     $taxRatePercentLabel = rtrim(rtrim(number_format($taxRatePercent, 2, '.', ''), '0'), '.');
 
-    $gymDomain = preg_replace('/\\s+/', '', strtolower($gymName));
-    $gymDomain = preg_replace('/[^a-z0-9]+/', '', (string) $gymDomain);
+    $clubDomain = preg_replace('/\\s+/', '', strtolower($clubName));
+    $clubDomain = preg_replace('/[^a-z0-9]+/', '', (string) $clubDomain);
     @endphp
 
     <div class="shell">
@@ -323,25 +323,25 @@
                 <tr>
                     <td style="vertical-align: top;">
                         <p class="brand">
-                            @if ($nameType === 'gym_name')
-                            {{ strtoupper($gymName) }}
+                            @if ($nameType === 'club_name')
+                            {{ strtoupper($clubName) }}
                             @else
-                            <span>{{ strtoupper($gymName) }}</span>
+                            <span>{{ strtoupper($clubName) }}</span>
                             @endif
                         </p>
-                        @if (filled($gymAddress))
-                        <p class="subtext">{{ $gymAddress }}</p>
+                        @if (filled($clubAddress))
+                        <p class="subtext">{{ $clubAddress }}</p>
                         @endif
-                        @if (filled($gymEmail) || filled($gymContact))
+                        @if (filled($clubEmail) || filled($clubContact))
                         <p class="subtext">
-                            @if (filled($gymEmail))
-                            {{ $gymEmail }}
+                            @if (filled($clubEmail))
+                            {{ $clubEmail }}
                             @endif
-                            @if (filled($gymEmail) && filled($gymContact))
+                            @if (filled($clubEmail) && filled($clubContact))
                             |
                             @endif
-                            @if (filled($gymContact))
-                            {{ $gymContact }}
+                            @if (filled($clubContact))
+                            {{ $clubContact }}
                             @endif
                         </p>
                         @endif
@@ -467,7 +467,7 @@
         </div>
 
         <div class="footer">
-            {{ __('app.invoices.pdf.footer_tagline', ['domain' => filled($gymDomain) ? $gymDomain : 'gymie']) }}
+            {{ __('app.invoices.pdf.footer_tagline', ['domain' => filled($clubDomain) ? $clubDomain : 'inasa']) }}
         </div>
     </div>
 </body>

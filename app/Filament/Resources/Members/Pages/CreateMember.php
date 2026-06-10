@@ -38,7 +38,7 @@ class CreateMember extends CreateRecord
                     'state' => $enquiry->state,
                     'pincode' => $enquiry->pincode,
                     'source' => $enquiry->source,
-                    'goal' => $enquiry->goal,
+
                 ]);
             }
         }

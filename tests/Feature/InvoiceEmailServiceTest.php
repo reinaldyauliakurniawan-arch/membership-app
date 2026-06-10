@@ -16,12 +16,12 @@ afterEach(function (): void {
     Helpers::setTestSettingsOverride(null);
 });
 
-it('sends invoice issued email with reply-to when gym email is configured', function (): void {
+it('sends invoice issued email with reply-to when club email is configured', function (): void {
     Helpers::setTestSettingsOverride([
         'general' => [
-            'gym_name' => 'Demo Gym',
-            'gym_email' => 'gym@example.com',
-            'gym_contact' => '9999999999',
+            'club_name' => 'Demo club',
+            'club_email' => 'club@example.com',
+            'club_contact' => '9999999999',
             'currency' => 'INR',
         ],
         'charges' => [
@@ -66,7 +66,7 @@ it('sends invoice issued email with reply-to when gym email is configured', func
 
     Mail::assertSent(InvoiceIssuedMail::class, function (InvoiceIssuedMail $mail) use ($invoice): bool {
         return $mail->invoice->is($invoice)
-            && $mail->hasReplyTo('gym@example.com')
+            && $mail->hasReplyTo('club@example.com')
             && count($mail->attachments()) === 1;
     });
 });

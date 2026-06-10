@@ -21,8 +21,8 @@ it('dispatches the payment receipt email job when enabled in settings', function
 
     Helpers::setTestSettingsOverride([
         'general' => [
-            'gym_name' => 'Demo Gym',
-            'gym_email' => 'gym@example.com',
+            'club_name' => 'Demo club',
+            'club_email' => 'club@example.com',
             'currency' => 'INR',
         ],
         'charges' => [

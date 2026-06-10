@@ -63,12 +63,8 @@ class MemberInfolist
                                 TextEntry::make('source')
                                     ->label(__('app.fields.source'))
                                     ->placeholder(__('app.placeholders.na')),
-                                TextEntry::make('goal')
-                                    ->label(__('app.fields.goal'))
-                                    ->placeholder(__('app.placeholders.na')),
-                                TextEntry::make('health_issue')
-                                    ->label(__('app.fields.health_issues'))
-                                    ->placeholder(__('app.placeholders.na')),
+
+
                             ])->columnSpan(4)->columns(3),
                     ])->columns(5),
                 Section::make(__('app.ui.location'))
