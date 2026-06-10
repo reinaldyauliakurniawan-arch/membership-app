@@ -34,6 +34,13 @@ class MemberFactory extends Factory
             'source' => $this->faker->randomElement(['promotions', 'referral', 'online']),
 
             'status' => $this->faker->randomElement(['active', 'inactive']),
+
+            'isf_id' => $this->faker->optional()->bothify('ISF-#####'),
+            'current_rating' => $this->faker->optional()->numberBetween(0, 2000),
+            'division_id' => null,
+            'nationality' => $this->faker->optional()->randomElement(['WNI', 'WNA', 'Dual']),
+            'skill_level' => $this->faker->optional()->randomElement(['beginner', 'intermediate', 'competitive']),
+            'is_coach' => $this->faker->boolean(20),
         ];
     }
 }

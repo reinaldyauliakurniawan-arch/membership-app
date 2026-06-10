@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Enquiry;
 use App\Models\Service;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -14,6 +12,14 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Service::factory()->count(5)->create();
+        Service::firstOrCreate(
+            ['name' => 'Membership'],
+            ['description' => 'INASA membership subscription plans.']
+        );
+
+        Service::firstOrCreate(
+            ['name' => 'Coaching'],
+            ['description' => 'Personal coaching session plans.']
+        );
     }
 }

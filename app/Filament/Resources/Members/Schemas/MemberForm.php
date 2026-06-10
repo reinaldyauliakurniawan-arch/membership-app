@@ -5,12 +5,14 @@ namespace App\Filament\Resources\Members\Schemas;
 use App\Filament\Resources\Subscriptions\Schemas\SubscriptionForm;
 use App\Helpers\Helpers;
 use App\Models\Member;
+use App\Models\Division;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
@@ -154,6 +156,69 @@ class MemberForm
                                     ->required()
                                     ->placeholder(__('app.placeholders.pincode')),
                             ]),
+                    ]),
+                Section::make('INASA Details')
+                    ->columns(3)
+                    ->schema([
+                        TextInput::make('isf_id')
+                            ->label('ISF ID')
+                            ->nullable()
+                            ->maxLength(255)
+                            ->placeholder('e.g. ISF-00123'),
+                        TextInput::make('current_rating')
+                            ->label('Current Rating')
+                            ->numeric()
+                            ->nullable()
+                            ->minValue(0),
+                        Select::make('division_id')
+                            ->label('Division')
+                            ->options(fn () => Division::orderBy('order')->pluck('name', 'id'))
+                            ->nullable()
+                            ->placeholder('Auto-assigned from rating'),
+                        Select::make('nationality')
+                            ->label('Nationality')
+                            ->options([
+                                'WNI' => 'WNI',
+                                'WNA' => 'WNA',
+                                'Dual' => 'Dual',
+                            ])
+                            ->nullable()
+                            ->placeholder('Select nationality'),
+                        Select::make('skill_level')
+                            ->label('Skill Level')
+                            ->options([
+                                'beginner' => 'Beginner',
+                                'intermediate' => 'Intermediate',
+                                'competitive' => 'Competitive',
+                            ])
+                            ->nullable()
+                            ->placeholder('Select skill level'),
+                        Toggle::make('is_coach')
+                            ->label('Is Coach')
+                            ->default(false)
+                            ->live(),
+                    ]),
+                Section::make('Coach Details')
+                    ->relationship('coachDetail')
+                    ->columns(2)
+                    ->visible(fn (Get $get): bool => (bool) $get('is_coach'))
+                    ->schema([
+                        TextInput::make('specialty')
+                            ->label('Specialty')
+                            ->nullable()
+                            ->maxLength(255)
+                            ->placeholder('e.g. Endgame, Rack Management, Opening'),
+                        TextInput::make('hourly_rate')
+                            ->label('Hourly Rate')
+                            ->numeric()
+                            ->nullable()
+                            ->minValue(0)
+                            ->prefix('Rp'),
+                        Textarea::make('bio')
+                            ->label('Bio')
+                            ->nullable()
+                            ->rows(3)
+                            ->columnSpanFull(),
                     ]),
                 Section::make(__('app.titles.subscription_and_invoice'))
                     ->visibleOn('create')

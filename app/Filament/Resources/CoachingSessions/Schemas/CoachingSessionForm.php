@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CoachingSessions\Schemas;
 
+use App\Models\Invoice;
 use App\Models\Member;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -47,6 +48,11 @@ class CoachingSessionForm
                             ])
                             ->default('scheduled')
                             ->required(),
+                        Select::make('invoice_id')
+                            ->label('Invoice')
+                            ->options(fn () => Invoice::query()->whereNotNull('number')->pluck('number', 'id'))
+                            ->nullable()
+                            ->placeholder('Link to invoice (optional)'),
                         Textarea::make('notes')
                             ->label('Notes')
                             ->rows(2)

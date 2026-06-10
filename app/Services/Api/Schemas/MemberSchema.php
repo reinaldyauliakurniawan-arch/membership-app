@@ -67,6 +67,13 @@ final class MemberSchema
             'source' => ['nullable', 'string', 'max:255'],
 
             'status' => ['nullable', 'string', Rule::in(['active', 'inactive'])],
+
+            'isf_id' => ['nullable', 'string', 'max:255'],
+            'current_rating' => ['nullable', 'integer', 'min:0'],
+            'division_id' => ['nullable', 'integer', 'exists:divisions,id'],
+            'nationality' => ['nullable', 'string', Rule::in(['WNI', 'WNA', 'Dual'])],
+            'skill_level' => ['nullable', 'string', Rule::in(['beginner', 'intermediate', 'competitive'])],
+            'is_coach' => ['nullable', 'boolean'],
         ];
     }
 
@@ -93,6 +100,13 @@ final class MemberSchema
             'source' => ['sometimes', 'nullable', 'string', 'max:255'],
 
             'status' => ['sometimes', 'nullable', 'string', Rule::in(['active', 'inactive'])],
+
+            'isf_id' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'current_rating' => ['sometimes', 'nullable', 'integer', 'min:0'],
+            'division_id' => ['sometimes', 'nullable', 'integer', 'exists:divisions,id'],
+            'nationality' => ['sometimes', 'nullable', 'string', Rule::in(['WNI', 'WNA', 'Dual'])],
+            'skill_level' => ['sometimes', 'nullable', 'string', Rule::in(['beginner', 'intermediate', 'competitive'])],
+            'is_coach' => ['sometimes', 'nullable', 'boolean'],
         ];
     }
 
@@ -119,6 +133,13 @@ final class MemberSchema
             'city' => $member->city ? (string) $member->city : null,
             'pincode' => $member->pincode ? (string) $member->pincode : null,
             'source' => $member->source ? (string) $member->source : null,
+
+            'isf_id' => $member->isf_id ? (string) $member->isf_id : null,
+            'current_rating' => $member->current_rating !== null ? (int) $member->current_rating : null,
+            'division_id' => $member->division_id !== null ? (int) $member->division_id : null,
+            'nationality' => $member->nationality ? (string) $member->nationality : null,
+            'skill_level' => $member->skill_level ? (string) $member->skill_level : null,
+            'is_coach' => (bool) $member->is_coach,
 
             'status' => Status::valueOf($member->status),
             'created_at' => $member->created_at?->toISOString(),

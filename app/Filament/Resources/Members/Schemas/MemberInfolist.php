@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Members\Schemas;
 
 use App\Models\Member;
+use App\Helpers\Helpers;
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Group;
@@ -86,6 +88,44 @@ class MemberInfolist
                             ->columns(4),
                     ]),
 
+            Section::make('INASA Details')
+                    ->columns(3)
+                    ->schema([
+                        TextEntry::make('isf_id')
+                            ->label('ISF ID')
+                            ->placeholder('—'),
+                        TextEntry::make('current_rating')
+                            ->label('Current Rating')
+                            ->placeholder('—'),
+                        TextEntry::make('division.name')
+                            ->label('Division')
+                            ->placeholder('—'),
+                        TextEntry::make('nationality')
+                            ->label('Nationality')
+                            ->placeholder('—'),
+                        TextEntry::make('skill_level')
+                            ->label('Skill Level')
+                            ->placeholder('—'),
+                        IconEntry::make('is_coach')
+                            ->label('Is Coach')
+                            ->boolean(),
+                    ]),
+                Section::make('Coach Details')
+                    ->columns(2)
+                    ->visible(fn (Member $record): bool => (bool) $record->is_coach)
+                    ->schema([
+                        TextEntry::make('coachDetail.specialty')
+                            ->label('Specialty')
+                            ->placeholder('—'),
+                        TextEntry::make('coachDetail.hourly_rate')
+                            ->label('Hourly Rate')
+                            ->money(Helpers::getCurrencyCode())
+                            ->placeholder('—'),
+                        TextEntry::make('coachDetail.bio')
+                            ->label('Bio')
+                            ->placeholder('—')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

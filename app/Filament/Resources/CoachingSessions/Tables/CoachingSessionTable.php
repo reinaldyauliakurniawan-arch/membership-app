@@ -14,8 +14,10 @@ use Filament\Actions\ViewAction;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CoachingSessionTable
 {
@@ -66,6 +68,23 @@ class CoachingSessionTable
                 SelectFilter::make('member_id')
                     ->label('Member')
                     ->relationship('member', 'name'),
+                Filter::make('session_date')
+                    ->label('Date Range')
+                    ->schema([
+                        DatePicker::make('date_from')->label('From'),
+                        DatePicker::make('date_to')->label('To'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['date_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('session_date', '>=', $date),
+                            )
+                            ->when(
+                                $data['date_to'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('session_date', '<=', $date),
+                            );
+                    }),
             ])
             ->recordActions([
                 ActionGroup::make([
