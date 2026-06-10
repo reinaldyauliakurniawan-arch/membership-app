@@ -7,7 +7,9 @@ use App\Helpers\Helpers;
 use App\Models\Concerns\CascadesSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -29,6 +31,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $source
 
  * @property Status|null $status
+ * @property string|null $isf_id
+ * @property int|null $current_rating
+ * @property int|null $division_id
+ * @property string|null $nationality
+ * @property string|null $skill_level
+ * @property bool $is_coach
+ * @property-read Division|null $division
+ * @property-read CoachDetail|null $coachDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, CoachingSession> $coachingSessions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, TournamentParticipant> $tournamentParticipants
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Subscription> $subscriptions
  */
 class Member extends Model
@@ -57,11 +69,21 @@ class Member extends Model
         'city',
         'pincode',
         'source',
-
+        'isf_id',
+        'current_rating',
+        'division_id',
+        'nationality',
+        'skill_level',
+        'is_coach',
         'status',
     ];
 
-    protected $casts = ['dob' => 'date', 'status' => Status::class];
+    protected $casts = [
+        'dob' => 'date',
+        'status' => Status::class,
+        'is_coach' => 'boolean',
+        'current_rating' => 'integer',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -83,6 +105,38 @@ class Member extends Model
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    /**
+     * @return BelongsTo<Division, $this>
+     */
+    public function division(): BelongsTo
+    {
+        return $this->belongsTo(Division::class);
+    }
+
+    /**
+     * @return HasOne<CoachDetail, $this>
+     */
+    public function coachDetail(): HasOne
+    {
+        return $this->hasOne(CoachDetail::class);
+    }
+
+    /**
+     * @return HasMany<CoachingSession, $this>
+     */
+    public function coachingSessions(): HasMany
+    {
+        return $this->hasMany(CoachingSession::class, 'member_id');
+    }
+
+    /**
+     * @return HasMany<TournamentParticipant, $this>
+     */
+    public function tournamentParticipants(): HasMany
+    {
+        return $this->hasMany(TournamentParticipant::class);
     }
 
     /**

@@ -6,8 +6,10 @@ use App\Contracts\SequenceRepository;
 use App\Contracts\SettingsRepository;
 use App\Models\Invoice;
 use App\Models\InvoiceTransaction;
+use App\Models\Member;
 use App\Observers\InvoiceObserver;
 use App\Observers\InvoiceTransactionObserver;
+use App\Observers\MemberObserver;
 use App\Services\JsonSequenceRepository;
 use App\Services\JsonSettingsRepository;
 use App\Support\Data;
@@ -190,6 +192,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Invoice::observe(InvoiceObserver::class);
         InvoiceTransaction::observe(InvoiceTransactionObserver::class);
+        Member::observe(MemberObserver::class);
     }
 
     /**
