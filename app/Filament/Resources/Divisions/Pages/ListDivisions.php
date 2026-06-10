@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Filament\Resources\Divisions\Pages;
+
+use App\Filament\Resources\Divisions\DivisionResource;
+use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\Width;
+
+class ListDivisions extends ListRecords
+{
+    protected static string $resource = DivisionResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            CreateAction::make()
+                ->label('Add Division')
+                ->modalHeading('Add Division')
+                ->modalSubmitActionLabel('Save')
+                ->modalWidth(Width::Large)
+                ->closeModalByClickingAway(false),
+        ];
+    }
+}

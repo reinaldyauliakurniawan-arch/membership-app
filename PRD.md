@@ -2,7 +2,7 @@ INASA Membership App — PRD
 Project: INASA (Indonesia Australia Scrabble Academy) Membership System
 Base Codebase: reinaldyauliakurniawan-arch/membership-app (forked from Gymie)
 Stack: Laravel + Filament Admin Panel
-Status: Fase 2 in progress — migrations done, next: models & observers
+Status: Fase 2 in progress — tinggal update MemberForm untuk fields baru, lalu Fase 2 hampir selesai. -> pastikan lagi claim gue jangan asal percaya
 
 1. Background
 INASA adalah scrabble club yang baru diinisiasi, fokus pada market Indonesia, dengan sistem keanggotaan dan coaching yang mirip dengan gym. Club rutin mengadakan turnamen minimal sebulan sekali, dan semua turnamen di-rating oleh ISF (Indonesia Scrabble Federation). Member dibagi ke dalam divisi berdasarkan rating ISF masing-masing.

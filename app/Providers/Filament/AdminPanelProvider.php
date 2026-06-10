@@ -8,7 +8,10 @@ use App\Filament\Resources\Enquiries\EnquiryResource;
 use App\Filament\Resources\Expenses\ExpenseResource;
 use App\Filament\Resources\FollowUps\FollowUpResource;
 use App\Filament\Resources\Invoices\InvoiceResource;
+use App\Filament\Resources\CoachingSessions\CoachingSessionResource;
+use App\Filament\Resources\Divisions\DivisionResource;
 use App\Filament\Resources\Members\MemberResource;
+use App\Filament\Resources\Tournaments\TournamentResource;
 use App\Filament\Resources\Plans\PlanResource;
 use App\Filament\Resources\Services\ServiceResource;
 use App\Filament\Resources\Subscriptions\SubscriptionResource;
@@ -136,6 +139,9 @@ class AdminPanelProvider extends PanelProvider
             ...PlanResource::getNavigationItems(),
             ...ServiceResource::getNavigationItems(),
             ...SubscriptionResource::getNavigationItems(),
+            ...DivisionResource::getNavigationItems(),
+            ...CoachingSessionResource::getNavigationItems(),
+            ...TournamentResource::getNavigationItems(),
         ];
 
         return $builder
